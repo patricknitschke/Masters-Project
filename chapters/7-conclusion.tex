@@ -1,0 +1,42 @@
+\chapter{Conclusion}
+\label{chap:conclusion}
+
+\begin{comment}
+A concise summary of essential information and findings in the project.
+\end{comment}
+
+A growing interest in autonomy in today's society has spurred the development of new solutions within guidance, navigation and control of vehicles. Reinforcement learning has emerged as one of the tools capable of solving guidance and control tasks, in light of its success in recent years within the domain of robotic tasks.
+In this project, we have studied the use of two reinforcement learning algorithms, DDPG and PPO, as potential guidance systems for a quadrotor.
+
+We have learned that DDPG and PPO are two model-free actor-critic algorithms, capable on handling high-dimensional continuous state and action spaces through the use of NN parametrisations of the actor and critics. However, introduction of NNs as function approximators had its own onset of challenges which were then handled uniquely for DDPG and PPO. 
+For DDPG, the instability induced through its function-approximation, bootstrapping and off-policy learning was handled through the introduction of target networks and a replay buffer. Then to optimise its policy, the deterministic policy gradient was used.
+For PPO, it introduced a novel clipped surrogate objective, which was used to both optimise its policy, while offering stability and reliability through small updates.
+
+Then, to compare these models, the algorithms were demonstrated on an RMF in Gazebo, where the task was to command acceleration in order to reach a waypoint in 3-dimensional space. The algorithms were studied under the context of hyperparameter testing, where models with different combinations of hyperparameters were trained, tested and evaluated.
+
+From the results, it was proved that DDPG produced consistent performances compared to PPO, though PPO has the best potential performance. Of the models trained, Modified was the best DDPG model while the Optimal model was the best PPO one.
+It was further found that DDPG offered a high degree of stability, such that we could achieve improved results by increasing its learning rate and reducing the size of the replay buffer. 
+As for PPO, training the agents to an optimal solution proved to be unsuccessful -- with the exception of the Optimal model -- such that the effect of hyperparameters were compared in relation to a local optimum. 
+From this we observed that increasing the number of optimisation epochs, number of minibatches and increasing the value function coefficient increased the rate of convergence, though this could only be done if the batch size was increased, where 8000 had the best results. The faster training also proved to have slightly better results in testing and training, but also increased the rate of anomaly runs where the quadrotor flew off into distance. However, in hindsight, it was discussed the speed of training for PPO generally was too high, such that increased anomaly runs and high gradient updates resulted in divergence in training. 
+
+Otherwise, it was discussed that that navigating the complex optimisation space is difficult, such that a lack of exploration in PPO due to its on-policy sampling is a major challenge. Due to this complex optimisation space, a lucky initialisation could thus play a major role in converging to a good result, irregardless of hyperparameter tuning, as exemplified by the Optimal model. So as an improvement to training consistency, changing the implementation was a suggestion, where an idea is to for example add 5 seconds extra to each episode and allow the quadrotor to accumulate goal rewards in a non-terminal goal state.
+
+Lastly, a final comparison was made by testing the robustness of algorithms under a $\pm10\%$ mass change to the quadrotor. It was shown that the only the Optimal model was able to handle this test, performing exceptionally well in relation to all other models. However, this test was suspiciously difficult and after a thorough discussion, the poor performance was not necessarily the fault of the agent but of the underlying PD-controller. Therefore, an alternative robustness test can be proposed as further work.
+
+
+
+\begin{comment}
+
+\section{Further work}
+
+For further work, 
+
+D4PG: We also combine this technique with a number of additional, simple improvements such as the use of N-step returns and prioritized experience replay. 
+
+MADDPG: Multi-agent variant
+
+PPO: Released with multi-agent possibility
+
+STAC: Self-tuning AC
+
+\end{comment}

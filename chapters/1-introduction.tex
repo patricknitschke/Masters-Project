@@ -1,0 +1,78 @@
+\chapter{Introduction}
+\label{chap:introduction}
+
+\section{Motivation}
+
+In a world with a heightening level of autonomy, the focus on guidance, navigation and control of robots has never been greater. Likewise, the research community has been in tune with this focus -- innovating, developing and delivering autonomous solutions in novel research domains, ranging from underwater \cite{eelumeSale} to previously unimaginable subterranean environments \cite{washingtonPost}. 
+Yet, in light of the increased public interest in autonomy, there comes an increased level of expectation: previous state-of-the-art solutions have now become benchmarks \cite{openAIgym}, and standard environments for robotic applications are alikened to ``pristine conditions'' \cite{washingtonPost}. Also, obtaining funding becomes even more difficult as the bar for what is considered ``new and innovative'' is pushed higher, and potential investors looking for value outcomes are demanding more \cite{reasearchGrant, Gartner}.
+
+Of the vast array of robotic applications and research fields there are, these considerations can provide a motivation for the field of multirotor aerial vehicles (quadrotors). As a result of their low-cost, high versatility, manoeuvrability, relatively simple dynamics and payload potential, multirotor aerial vehicles enable easy exploration of tough environments and a large potential for task customisation. Thus, this field is one that has been gaining momentum in recent years, becoming a standard of aerial robotics research across the world \cite{MultirotorAerialVehicles}.
+
+Next, as expectations for today's robots are raised, so does their anticipated level of autonomy. In terms of its definition, this means that progressively less amount of human operation is expected, with the aim that these systems are able to make informed decisions even when presented with an unexpected event, or while navigating in an unknown environment \cite{TTK23}.
+Further, a higher level of autonomy in today's society is linked to the fact that a larger variety of industry and sectors are adopting the use of robotics, while at the same time robotic applications are becoming more complex.
+
+When considering how these dynamical systems will be controlled, we approach a dilemma where the use of classical control theory may be non-ideal. This could be through the difficulty to model or adapt to uncertainties, or through the fact that significant understanding and modelling of a dynamical system is required in order to control it. As the global robotics market is expected to grow at 20.6\% annually for the next five years \cite{roboticsMarket}, it could easily be unsustainable to develop control methods for each individual system, and as such, perhaps alternative control approaches could be considered.
+
+This motivates us to consider the use of learning-based methods, specifically reinforcement learning, which -- through its data-driven approach, high abstraction and evaluative feedback (reward) -- is able to capture both the dynamics of a system and the uncertainties of the environment, to generate complex behaviour without explicit programming \cite{TTK23, RLinRoboticsSurvey}.
+
+\section{Background and Related Work}
+
+The idea of reinforcement learning for robotic applications is not a new one, with previous methods dating back to the 1990s \cite{Gullapalli1994, Miyamoto1996}.
+Though only until recently have reinforcement algorithms within this field become unparalleled in performance, setting performance benchmarks in simple Atari games  \cite{mnih2013Atari}, and beating world class players in complex ones such as Dota \cite{ppoOnDota2020}. 
+The reason for this success could possibly be accredited to two key moments in reinforcement learning history: first through the successful extension of deep learning to reinforcement learning, to give Deep Q-Networks (DQNs) in 2013 \cite{mnih2013Atari, DQN}, and second, through the extension of DQNs to robotic, reinforcement learning tasks in the continuous domain, to give Deep Deterministic Policy Gradients (DDPG) in 2015 \cite{DDPG}.
+
+Since then, many novel deep reinforcement learning algorithms have been introduced for a wide variety of robotic tasks, such as Trust-Region Policy Optimisation (TRPO) \cite{TRPO}, while just as many others are adapted and ``improved'' versions of previous methods, such as Actor-Critic Experience Replay (ACER) and Proximal Policy Optimisation (PPO) \cite{ACER, PPO}.
+
+In light of these recent advancements, deep reinforcement learning has drawn focus from the cybernetics and control community, leading to a wider use of these methods for guidance and control, 
+such as in aerial robotics. For example, deep reinforcement learning is used for autonomous drone landing in \cite{RodriguezRamos2019ADR}, and 3D position control in  \cite{ControlofQuadrotorRL} and \cite{PPOQuadrotor}. Of these, we note the use of three different methods, DDPG, vanilla policy gradient and PPO, respectively. 
+Deep reinforcement learning has often been used in navigation tasks as well, ranging from 2D motion planning in \cite{Roy2002MotionPT}, to 3D quadrotor racing using PPO in \cite{song2021droneRacing}. 
+
+Yet, in contrast to the papers that introduce these algorithms \cite{DDPG, PPO}, most of these implementations focus on their own adaptation of an algorithm, including only: a reference to other methods in their background or a simple comparison of their approach against other baseline implementations.
+
+So, with a such a variety of reinforcement learning policies for guidance and control, this begs the question: \textit{how do we really know what the best algorithm is for our control task?} 
+
+
+\section{Scope}
+
+With the aim of answering this question, this project thesis attempts to compare the best achievable performances of two reinforcement learning algorithms, DDPG and PPO, as a way of attaining a practical understanding of how different aspects of each algorithm and its hyperparameters affect the learning task of quadrotor guidance.
+
+To accomplish this, the project will first compare the effects of hyperparameters in DDPG and PPO separately, analysing the effect these have on the training process and the resulting behaviour of these models in testing. The models are trained to understand how its position and velocity should be mapped to acceleration vectors, in order to reach some waypoint in 3-dimensional space. As for the tests, this will be standardised, such that fair comparisons are made between each model.
+
+The project will compare the some relevant
+hyperparameters for each model, but not to the extent of an exhaustive hyperparameter search. Instead, focus will be placed on understanding the effects of each hyperparameter. Finally, the best models for DDPG and PPO, along with their hyperparameter combinations, are compared and discussed.
+
+\section{Outline}
+
+The outline of this project will be as follows:
+\vspace{2mm}
+\begin{itemize}
+    \item \textbf{Chapter 1: Introduction} This chapter includes the motivation for this project, along with reinforcement learning solutions for quadrotor guidance and control.
+    \item \textbf{Chapter 2: Theoretical Background} The reinforcement learning problem and its goal is defined in this chapter, presented through the framework of Markov Decision Processes. Last, some considerations are made to illustrate the difficulty of reinforcement learning for robotics.
+    \item \textbf{Chapter 3: Policy Optimisation} This chapter presents methods to optimise an agent's policy when it is approximated through parameters. Finally, the DDPG and PPO algorithms are introduced.
+    \item \textbf{Chapter 4: Method} This chapter describes the reinforcement learning problem for our quadrotor guidance task. It explains how the experiment is set up and how it is implemented in practice.
+    \item \textbf{Chapter 5: Results} The results from training and testing DDPG and PPO are presented in this chapter. This includes training plots, test result tables along with some trajectory plots. In addition, the algorithms' robustness is tested by changing the quadrotor mass by $\pm10\%$.
+    \item \textbf{Chapter 6: Discussion} The effects of hyperparameters are discussed, along with any explanations for unexpected or strange results.
+    \item \textbf{Chapter 7: Conclusion} The project is concluded by summarising the theoretical differences and results, along with explanations we found for the results.
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

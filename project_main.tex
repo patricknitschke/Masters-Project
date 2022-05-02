@@ -1,0 +1,34 @@
+\documentclass[british,titlepage, oneside]{project_setup}
+
+\addbibresource{bibliography.bib}
+
+\input{glossary.tex} % add glossary and acronym lists before document
+
+\begin{document}
+\setstretch{1.25}
+
+\input{chapters/0a-abstract.tex}
+%\input{chapters/0b-sammendrag}
+
+\tableofcontents
+\listoffigures
+\listoftables
+%\lstlistoflistings
+
+\printglossary[type=\acronymtype] % Print acronyms
+\printglossary                    % Print glossary
+
+\input{chapters/1-introduction}
+\input{chapters/2-fundamentals}
+\input{chapters/3-policyOptimisation}
+\input{chapters/4-method}
+\input{chapters/5-results}
+\input{chapters/6-discussion}
+\input{chapters/7-conclusion}
+
+\printbibliography
+\appendix
+\input{appendices/a-appendix.tex}
+\input{appendices/b-appendix.tex}
+
+\end{document}
